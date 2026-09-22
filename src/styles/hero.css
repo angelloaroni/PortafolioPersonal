@@ -1,0 +1,107 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  padding: calc(var(--nav-h) + 2rem) 0 9rem;
+  background: var(--ink);
+}
+.hero__rings {
+  position: absolute;
+  inset: -30%;
+  background: repeating-radial-gradient(circle at 72% 44%, var(--red) 0 9vmin, var(--ink) 9vmin 18vmin);
+}
+.hero__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+.hero__role { margin: 0 0 1.2rem; }
+.hero__role span {
+  display: inline-block;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding: 0.15rem 1rem;
+  transform: skew(var(--skew));
+  box-shadow: 5px 5px 0 var(--red);
+}
+.hero__name { display: flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+.ransom--xl { font-size: clamp(3rem, 10.5vw, 7.6rem); }
+.hero__lead {
+  margin: 1.8rem 0 2rem;
+  max-width: 34ch;
+  padding: 0.6rem 1rem;
+  background: rgba(10, 10, 10, 0.88);
+  border-left: 6px solid var(--red);
+  font-size: 1.4rem;
+}
+.hero__cta { display: flex; flex-wrap: wrap; gap: 1.4rem; }
+
+/* Entrada de las letras: el único momento animado de la carga */
+.ransom--slam .ransom__ch { opacity: 0; }
+.is-ready .ransom--slam .ransom__ch {
+  animation: slam 0.55s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+  animation-delay: calc(var(--i) * 65ms + 300ms);
+}
+@keyframes slam {
+  from { opacity: 0; transform: translateY(-1.2em) rotate(calc(var(--r) * 4)) scale(1.7); }
+  to   { opacity: 1; transform: translateY(var(--y)) rotate(var(--r)) scale(1); }
+}
+
+/* Tarjeta tipo "aviso" */
+.calling {
+  justify-self: end;
+  max-width: 400px;
+  padding: 2.2rem 1.7rem 1.6rem;
+  background: #fff;
+  color: var(--ink);
+  border: 4px solid var(--ink);
+  box-shadow: 10px 10px 0 var(--red), 14px 14px 0 3px #000;
+  font-size: 1.3rem;
+  transform: rotate(3deg);
+}
+.calling__head { margin: -3.2rem 0 1.2rem -2.6rem; font-size: 1.6rem; transform: rotate(-3deg); }
+.calling__sign { margin: 0.4rem 0 0; font-family: var(--hand); font-size: 2.3rem; color: var(--red); transform: rotate(-4deg); }
+
+.marquee {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.6rem;
+  overflow: hidden;
+  background: var(--ink);
+  border-block: 4px solid #fff;
+  transform: rotate(-1.4deg);
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  animation: scroll 42s linear infinite;
+  will-change: transform;
+}
+.marquee__track span {
+  flex: 0 0 auto;
+  padding: 0.45rem 0 0.35rem 1.4rem;
+  font-family: var(--display);
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.marquee__track b { margin-left: 1.4rem; color: var(--red); }
+@keyframes scroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .calling { justify-self: start; margin: 1.5rem 0.5rem 0 2.4rem; transform: rotate(2deg); }
+  .hero { padding-bottom: 7rem; }
+}

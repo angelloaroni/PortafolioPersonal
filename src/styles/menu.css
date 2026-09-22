@@ -1,0 +1,73 @@
+.menu {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.9rem clamp(0.8rem, 3vw, 2rem);
+  pointer-events: none;
+}
+.menu > * { pointer-events: auto; }
+
+.menu__brand { font-size: 1.3rem; text-decoration: none; filter: drop-shadow(4px 4px 0 #000); }
+
+.menu__list { display: flex; align-items: center; gap: 0.5rem; }
+
+.menu__item {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--ink);
+  border: 2px solid #fff;
+  padding: 0.4rem 1.1rem;
+  transform: skew(var(--skew));
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, transform 0.12s;
+}
+.menu__item > span { display: inline-block; transform: skew(var(--unskew)); }
+.menu__item:hover { background: var(--red); transform: skew(var(--skew)) translateY(-2px); }
+.menu__item.is-active { background: #fff; color: var(--ink); border-color: var(--ink); box-shadow: 4px 4px 0 var(--red); }
+.menu__sound { font-size: 0.9rem; background: var(--red); }
+
+.menu__burger {
+  display: none;
+  position: relative;
+  z-index: 2;
+  width: 54px;
+  height: 44px;
+  place-content: center;
+  gap: 5px;
+  background: var(--ink);
+  border: 2px solid #fff;
+  transform: skew(var(--skew));
+  cursor: pointer;
+}
+.menu__burger span:not(.sr-only) { display: block; width: 24px; height: 3px; background: #fff; }
+
+@media (max-width: 940px) {
+  .menu__burger { display: grid; }
+  .menu__list {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.9rem;
+    padding: 0 2rem;
+    background: var(--red);
+    background-image: repeating-linear-gradient(-20deg, transparent 0 70px, rgba(0, 0, 0, 0.14) 70px 140px);
+    transform: translateX(-105%);
+    visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.7, 0, 0.3, 1), visibility 0s 0.35s;
+  }
+  .menu__list.is-open { transform: none; visibility: visible; transition: transform 0.35s cubic-bezier(0.7, 0, 0.3, 1); }
+  .menu__item { font-size: 1.7rem; padding: 0.5rem 1.6rem; }
+  .menu__item.is-active { box-shadow: 5px 5px 0 #000; }
+  .menu__sound { font-size: 1.2rem; background: var(--ink); }
+  .menu__brand { position: relative; z-index: 2; }
+}

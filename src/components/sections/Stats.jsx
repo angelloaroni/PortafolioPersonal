@@ -1,5 +1,6 @@
 import SectionTitle from '../shared/SectionTitle.jsx';
-import { stats } from '../../data/skills.js';
+import StatIcon from '../shared/StatIcon.jsx';
+import { stats, RANKS } from '../../data/skills.js';
 
 export default function Stats() {
   return (
@@ -13,13 +14,20 @@ export default function Stats() {
             <article className={`slab slab--paper stat ${idx % 2 ? 'stat--b' : ''}`} key={s.title}>
               <div className="slab__in">
                 <header className="stat__head">
-                  <h3>{s.title}</h3>
+                  <div className="stat__title">
+                    <StatIcon name={s.icon} />
+                    <h3>{s.title}</h3>
+                    <span className="stat__rank" aria-hidden="true">
+                      {RANKS[s.level]}
+                    </span>
+                  </div>
                   <p>{s.group}</p>
-                  <div className="stat__pips" role="img" aria-label={`Nivel ${s.level} de 5`}>
+                  <div className="stat__pips" role="img" aria-label={`Nivel ${s.level} de 5, rango ${RANKS[s.level]}`}>
                     {[1, 2, 3, 4, 5].map((n) => (
                       <i key={n} className={n <= s.level ? 'on' : ''} />
                     ))}
                   </div>
+                  <p className="stat__flavor">{s.flavor}</p>
                 </header>
                 <ul className="chips">
                   {s.items.map((it) => (

@@ -57,6 +57,9 @@ export default function Menu({ sections, active, onNavigate }) {
         <button className="menu__item menu__sound" onClick={toggle} aria-pressed={enabled}>
           <span>Sonido {enabled ? 'on' : 'off'}</span>
         </button>
+        <p className="menu__hint" aria-hidden="true">
+          <kbd>Q</kbd>/<kbd>E</kbd> cambia de pestaña
+        </p>
       </nav>
     </header>
   );

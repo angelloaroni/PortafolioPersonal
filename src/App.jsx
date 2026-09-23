@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { SfxProvider, useSfx } from './context/SfxContext.jsx';
-import useActiveSection from './hooks/useActiveSection.js';
 import useKonami from './hooks/useKonami.js';
 import { navSections } from './data/profile.js';
 import Loader from './components/overlays/Loader.jsx';
@@ -16,15 +15,29 @@ import Arcade from './components/sections/Arcade.jsx';
 import Contact from './components/sections/Contact.jsx';
 
 const IDS = navSections.map((s) => s.id);
+
+// Una vista por pestaña: solo la activa está montada, así la página nunca
+// se "baja hasta el final": hay que usar el menú (o Q/E) para cambiar.
+const VIEWS = {
+  home: Hero,
+  about: About,
+  stats: Stats,
+  projects: Projects,
+  log: Log,
+  arcade: Arcade,
+  contact: Contact,
+};
+
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function Site() {
   const { play } = useSfx();
   const [phase, setPhase] = useState('loading'); // loading | leaving | ready
+  const [active, setActive] = useState(IDS[0]);
   const [wipe, setWipe] = useState(false);
   const [steal, setSteal] = useState(false);
-  const active = useActiveSection(IDS);
+  const busy = useRef(false);
 
   useEffect(() => {
     const t1 = setTimeout(() => setPhase('leaving'), prefersReducedMotion() ? 200 : 1700);
@@ -35,18 +48,44 @@ function Site() {
     };
   }, []);
 
-  const navigate = useCallback((id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const jump = () => window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: 'instant' });
-    if (prefersReducedMotion()) {
-      jump();
-      return;
-    }
-    setWipe(true);
-    setTimeout(jump, 330);
-    setTimeout(() => setWipe(false), 800);
-  }, []);
+  const navigate = useCallback(
+    (id) => {
+      if (!IDS.includes(id) || id === active || busy.current) return;
+      const jump = () => window.scrollTo({ top: 0, behavior: 'instant' });
+      if (prefersReducedMotion()) {
+        setActive(id);
+        jump();
+        return;
+      }
+      busy.current = true;
+      setWipe(true);
+      setTimeout(() => {
+        setActive(id);
+        jump();
+      }, 330);
+      setTimeout(() => {
+        setWipe(false);
+        busy.current = false;
+      }, 800);
+    },
+    [active],
+  );
+
+  // Atajos Q / E para saltar de pestaña sin tocar el menú (como L1/R1 en el juego).
+  // Las flechas quedan libres a propósito: el Konami code las usa.
+  useEffect(() => {
+    const onKey = (e) => {
+      const tag = e.target?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      const key = e.key.toLowerCase();
+      if (key !== 'q' && key !== 'e') return;
+      const idx = IDS.indexOf(active);
+      const dir = key === 'e' ? 1 : -1;
+      navigate(IDS[(idx + dir + IDS.length) % IDS.length]);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [active, navigate]);
 
   const unlock = useCallback(() => {
     setSteal(true);
@@ -61,6 +100,7 @@ function Site() {
   }, [steal]);
 
   const started = phase !== 'loading';
+  const View = VIEWS[active];
 
   return (
     <div className={`site ${started ? 'is-ready' : ''}`}>
@@ -68,14 +108,8 @@ function Site() {
       <Wipe active={wipe} />
       {steal && <Steal onClose={() => setSteal(false)} />}
       <Menu sections={navSections} active={active} onNavigate={navigate} />
-      <main>
-        <Hero onNavigate={navigate} />
-        <About />
-        <Stats />
-        <Projects />
-        <Log />
-        <Arcade />
-        <Contact />
+      <main key={active}>
+        <View onNavigate={navigate} />
       </main>
     </div>
   );

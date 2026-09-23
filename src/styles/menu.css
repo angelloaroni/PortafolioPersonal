@@ -33,6 +33,25 @@
 .menu__item.is-active { background: #fff; color: var(--ink); border-color: var(--ink); box-shadow: 4px 4px 0 var(--red); }
 .menu__sound { font-size: 0.9rem; background: var(--red); }
 
+.menu__hint {
+  margin: 0 0 0 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #d6d6d6;
+  white-space: nowrap;
+}
+.menu__hint kbd {
+  display: inline-block;
+  padding: 0.05rem 0.4rem;
+  background: var(--ink);
+  border: 1px solid #fff;
+  border-radius: 3px;
+  font-family: var(--display);
+  font-size: 0.85rem;
+  color: #fff;
+}
+
 .menu__burger {
   display: none;
   position: relative;
@@ -70,4 +89,5 @@
   .menu__item.is-active { box-shadow: 5px 5px 0 #000; }
   .menu__sound { font-size: 1.2rem; background: var(--ink); }
   .menu__brand { position: relative; z-index: 2; }
+  .menu__hint { display: none; }
 }

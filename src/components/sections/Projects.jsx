@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 import SectionTitle from '../shared/SectionTitle.jsx';
 import { projects } from '../../data/projects.js';
-import { profile } from '../../data/profile.js';
 import { useSfx } from '../../context/SfxContext.jsx';
 
 export default function Projects() {
@@ -55,14 +54,6 @@ export default function Projects() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  className="btn btn--red proj__link"
-                  href={p.repo || profile.github}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <span>Ver en GitHub</span>
-                </a>
               </div>
             </li>
           ))}

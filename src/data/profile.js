@@ -1,5 +1,4 @@
-// Datos personales tomados del CV. Edita aquí y toda la web se actualiza.
-// El teléfono no se incluye a propósito: es un portafolio público.
+
 export const profile = {
   name: 'Hubert Angello Aroni Yauri',
   alias: 'Angello Aroni',
@@ -14,6 +13,7 @@ export const profile = {
     'Estudio Ingeniería de Sistemas en la Universidad de Lima y me interesa el desarrollo full-stack web y las aplicaciones móviles Android.',
     'Tengo experiencia en gestión de información y seguridad de APIs: combino front-end con React y JavaScript con back-end en Node.js y PostgreSQL. Aprendo por cuenta propia y siempre estoy probando tecnologías nuevas.',
   ],
+  quote: 'Si no compila, no es el fin: es el commit de mañana.',
   sheet: [
     { label: 'Carrera', value: 'Ingeniería de Sistemas' },
     { label: 'Universidad', value: 'Universidad de Lima (2023 - actualidad)' },
@@ -21,8 +21,15 @@ export const profile = {
     { label: 'Base', value: 'Ate, Lima, Perú' },
     { label: 'Idiomas', value: 'Español (nativo), Inglés B2 (Cambridge)' },
   ],
-  interests: ['Hiking', 'Videojuegos', 'Música'],
-  volunteering: ['Ciudades Verdes', 'Cuida tu Playa'],
+  interests: [
+    { label: 'Hiking', icon: 'mountain' },
+    { label: 'Videojuegos', icon: 'controller' },
+    { label: 'Música', icon: 'note' },
+  ],
+  volunteering: [
+    { label: 'Ciudades Verdes', icon: 'leaf' },
+    { label: 'Cuida tu Playa', icon: 'wave' },
+  ],
 };
 
 export const navSections = [

@@ -1,5 +1,5 @@
-import SectionTitle from './SectionTitle.jsx';
-import { profile } from '../data/profile.js';
+import SectionTitle from '../shared/SectionTitle.jsx';
+import { profile } from '../../data/profile.js';
 
 export default function About() {
   return (

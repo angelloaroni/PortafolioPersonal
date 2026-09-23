@@ -1,4 +1,4 @@
-import Ransom from './Ransom.jsx';
+import Ransom from '../shared/Ransom.jsx';
 
 export default function Loader({ leaving }) {
   return (

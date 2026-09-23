@@ -1,5 +1,5 @@
-import SectionTitle from './SectionTitle.jsx';
-import { stats } from '../data/skills.js';
+import SectionTitle from '../shared/SectionTitle.jsx';
+import { stats } from '../../data/skills.js';
 
 export default function Stats() {
   return (

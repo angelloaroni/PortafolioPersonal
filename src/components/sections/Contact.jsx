@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import SectionTitle from './SectionTitle.jsx';
-import { profile } from '../data/profile.js';
-import { useSfx } from '../context/SfxContext.jsx';
+import SectionTitle from '../shared/SectionTitle.jsx';
+import { profile } from '../../data/profile.js';
+import { useSfx } from '../../context/SfxContext.jsx';
 
 const MailIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true" width="34" height="34" fill="none" stroke="currentColor" strokeWidth="2.2">

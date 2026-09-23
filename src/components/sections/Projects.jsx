@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
-import SectionTitle from './SectionTitle.jsx';
-import { projects } from '../data/projects.js';
-import { profile } from '../data/profile.js';
-import { useSfx } from '../context/SfxContext.jsx';
+import SectionTitle from '../shared/SectionTitle.jsx';
+import { projects } from '../../data/projects.js';
+import { profile } from '../../data/profile.js';
+import { useSfx } from '../../context/SfxContext.jsx';
 
 export default function Projects() {
   const { play } = useSfx();

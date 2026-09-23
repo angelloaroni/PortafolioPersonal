@@ -1,6 +1,6 @@
-import Ransom from './Ransom.jsx';
-import { profile } from '../data/profile.js';
-import { marquee } from '../data/skills.js';
+import Ransom from '../shared/Ransom.jsx';
+import { profile } from '../../data/profile.js';
+import { marquee } from '../../data/skills.js';
 
 export default function Hero({ onNavigate }) {
   const items = [...marquee, ...marquee];

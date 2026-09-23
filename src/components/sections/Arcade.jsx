@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import SectionTitle from './SectionTitle.jsx';
-import MemoryGame from './games/MemoryGame.jsx';
-import ShadowHunt from './games/ShadowHunt.jsx';
-import Quiz from './games/Quiz.jsx';
-import { useSfx } from '../context/SfxContext.jsx';
+import SectionTitle from '../shared/SectionTitle.jsx';
+import MemoryGame from '../games/MemoryGame.jsx';
+import ShadowHunt from '../games/ShadowHunt.jsx';
+import Quiz from '../games/Quiz.jsx';
+import { useSfx } from '../../context/SfxContext.jsx';
 
 const GAMES = [
   {

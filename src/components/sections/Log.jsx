@@ -1,5 +1,5 @@
-import SectionTitle from './SectionTitle.jsx';
-import { timeline, certifications } from '../data/history.js';
+import SectionTitle from '../shared/SectionTitle.jsx';
+import { timeline, certifications } from '../../data/history.js';
 
 export default function Log() {
   return (

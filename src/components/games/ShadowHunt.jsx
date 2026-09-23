@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Ransom from '../Ransom.jsx';
+import Ransom from '../shared/Ransom.jsx';
 import { useSfx } from '../../context/SfxContext.jsx';
 import useLocalBest from '../../hooks/useLocalBest.js';
 

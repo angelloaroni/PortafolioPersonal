@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export const timeline = [
   {
     date: '2023 - actualidad',
@@ -18,3 +20,7 @@ export const certifications = [
   'Curso de Ethical Hacking (Cibertec)',
   'Congreso Internacional de Ingeniería de Sistemas, Universidad de Lima (2 certificados de participación)',
 ];
+
+
+
+

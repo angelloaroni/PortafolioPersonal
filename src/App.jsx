@@ -3,17 +3,17 @@ import { SfxProvider, useSfx } from './context/SfxContext.jsx';
 import useActiveSection from './hooks/useActiveSection.js';
 import useKonami from './hooks/useKonami.js';
 import { navSections } from './data/profile.js';
-import Loader from './components/Loader.jsx';
-import Wipe from './components/Wipe.jsx';
-import Steal from './components/Steal.jsx';
-import Menu from './components/Menu.jsx';
-import Hero from './components/Hero.jsx';
-import About from './components/About.jsx';
-import Stats from './components/Stats.jsx';
-import Projects from './components/Projects.jsx';
-import Log from './components/Log.jsx';
-import Arcade from './components/Arcade.jsx';
-import Contact from './components/Contact.jsx';
+import Loader from './components/overlays/Loader.jsx';
+import Wipe from './components/overlays/Wipe.jsx';
+import Steal from './components/overlays/Steal.jsx';
+import Menu from './components/layout/Menu.jsx';
+import Hero from './components/sections/Hero.jsx';
+import About from './components/sections/About.jsx';
+import Stats from './components/sections/Stats.jsx';
+import Projects from './components/sections/Projects.jsx';
+import Log from './components/sections/Log.jsx';
+import Arcade from './components/sections/Arcade.jsx';
+import Contact from './components/sections/Contact.jsx';
 
 const IDS = navSections.map((s) => s.id);
 const prefersReducedMotion = () =>

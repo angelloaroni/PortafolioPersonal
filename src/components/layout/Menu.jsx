@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Ransom from './Ransom.jsx';
-import { useSfx } from '../context/SfxContext.jsx';
+import Ransom from '../shared/Ransom.jsx';
+import { useSfx } from '../../context/SfxContext.jsx';
 
 export default function Menu({ sections, active, onNavigate }) {
   const [open, setOpen] = useState(false);
